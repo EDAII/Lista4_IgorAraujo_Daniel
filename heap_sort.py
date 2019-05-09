@@ -1,3 +1,14 @@
+import random
+import time
+
+
+# Preenchendo Vetor Desordenado
+def fill_vector_disorder(total_numbers):
+    vector = list(range(0, total_numbers + 1))
+    random.shuffle(vector)
+    return vector
+
+
 def heapify(arr, n, i):
     # Find largest among root and children
     largest = i
@@ -30,9 +41,6 @@ def heap_sort(arr):
         # heapify root element
         heapify(arr, i, 0)
 
-
-arr = [12, 11, 13, 5, 6, 7]
-heap_sort(arr)
 
 print('Heap Sort', end='\n\n')
 print('Heap Sort é um algoritmo de ordenação popular e eficiente em programação de computadores. Aprender a escrever o '
@@ -109,11 +117,37 @@ print('Assim, para manter a propriedade de max-heap em uma árvore, onde ambas a
       'precisamos executar o heapify no elemento raiz, repetidamente, até que o mesmo seja maior do que seus '
       'filhos ou se torne um nó folha.')
 
+print('Construindo o max-heap', end='\n\n')
+print('Para construir um max-heap de qualquer árvore, podemos começar aplicar o processo de heapify para cada '
+      'sub-árvore de baixo a cima e finalizar com um max-heap depois que a função é aplicada em todos os elementos, '
+      'incluindo o elemento raiz.')
+print('No caso de uma árvore completa, o primeiro índice do nó não-folha é dada por n/2 - 1.'
+      ' Todos os outros nós depois que são nós de folha não precisam passar pelo heapify.')
+print('A imagem a seguir representa a construção do max-heap')
+print('IMAGEM 10', end='\n')
+
+print('Como mostra no diagrama acima, começamos por heapifying as árvores das menores para os mais baixas e '
+      'mover-las gradualmente até chegarmos ao elemento raiz.')
 
 
+print('Enfim, o heap sort', end='\n\n')
+print('Etapas para execução do heap sort: ')
+print('1. Desde que a árvore satisfaça a propriedade de Max-Heap, então, o maior item é armazenado no nó raiz.')
+print('2. Remover o elemento raiz e colocar no final do array (n-ésima posição. Colocar o último item da árvore (heap) '
+      'no lugar vago.')
+print('3. Reduzir o tamanho do heap por 1 e aplicar o heapify no elemento raiz novamente para que possamos ter '
+      'o maior elemento como raiz.')
+print('4. O processo é repetido até que todos os itens da lista é classificada.')
+print('IMAGEM 11', end='\n\n')
 
 
+total_number = int(input('Digite a quantidade de elementos do vetor: '))
+arr = fill_vector_disorder(total_number)
 
-n = len(arr)
-print("Sorted array is")
-print(arr)
+before = time.time()
+heap_sort(arr)
+after = time.time()
+
+total = (after - before) * 1000  # Segundos multiplicados em 10000
+
+print("O tempo gasto para ordenar o vetor foi: {:6f} mili-segundos". format(total))
