@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import db
 import time
 from botConfig import get_url, get_updates, get_json_from_url, get_last_update_id, send_message, sendGif
 from searchMethods import simple_sequence_search, sentry_sequence_search, jump_search, interpolation_search, binary_search
@@ -6,7 +7,7 @@ from searchMethods import fill_vector_order, fill_vector_disorder
 from searchMethods import plotting_graph, compare_graph, search, compare_search
 from sortMethods import*
 import telegram
-import db
+from heap_sort import fill_vector_disorder, heap_sort
 
 
 TOKEN = "644291660:AAE0TNc6nMu4i-eky-5ASn__qJ26kgB63Xg"
@@ -460,49 +461,78 @@ def handle_updates(updates):
             total = (after - before) * 1000
             return send_message("O tempo gasto para ordenar o vetor foi: {:6f} mili-segundos". format(total), chat)
         elif command == '/HS':
-            # send_message(
-            #     'Heap Sort é um algoritmo de ordenação popular e eficiente em programação de computadores. Aprender a escrever o ', chat)
-            # time.sleep(3)
-            # send_message(
-            #     'algoritmo de classificação de pilha requer conhecimento de dois tipos de estruturas de dados - arrays e árvores.', chat)
-            # time.sleep(3)
-            # send_message(
-            #     'Seu funcionamento é fundamentado na visualização dos elementos do array em uma forma especial,chamada heap.', chat)
-            # time.sleep(1)
-            # send_message('Entendendo uma árvore binária', chat)
-            # time.sleep(0.3)
-            # send_message(
-            #     'Uma árvore binária é uma estrutura de dados em que cada pai (um nó da árvore) pode ter no máximo dois filhos. ', chat)
-            # send_message('Na imagem, cada elemento possui 2 filhos ', chat)
-            # bot.send_photo(chat_id=chat, photo=open(
-            #     '../imagens/imagem_1.jpg', 'rb'))
-            # send_message('Árvore binária cheia', chat)
-            # send_message(
-            #      'Uma árvore binária cheia (full binary tree) é um tipo especial de árvore binária,em que todos os pais tem dois filhos ou nenhum.', chat)
-            # bot.send_photo(chat_id=chat, photo=open('../imagens/imagem_2.jpg', 'rb'))
-            # send_message('Árvore binária completa', chat)
-            # send_message(
-            #       'Uma árvore binária completa (Complete binary tree) é como uma árvore binária cheia,mas com duas grandes diferenças:', chat)
-            # send_message('1. Cada nível deve ser completamente preenchido \n 2. Todos os elementos da folha devem inclinar-se para a esquerda.\n 3. O último elemento de folha não pode ter um certo irmão, isto é, uma árvore binária completa não precisa ser uma árvore binária cheia.', chat)
-            # bot.send_photo(chat_id=chat, photo=open('../imagens/imagem_3.jpg', 'rb'))
-            # send_message('Como criar uma árvore binária completa de uma lista não-ordenada (array)?',chat)
-            # send_message('1.Selecione o primeiro elemento da lista para ser o nó raiz. (Primeiro nível - 1 elemento)',chat)
-            # send_message('2.Coloque o segundo elemento como um filho à esquerda do nó raiz e o terceiro elemento como um filho a direita,2.Coloque o segundo elemento como um filho à esquerda do nó raiz e o terceiro elemento como um filho a direita.',chat)
-            # send_message('3. Colocar em seguida dois elementos como filhos do nó esquerdo do segundo nível. Mais uma vez,colocar os dois próximos elementos como filhos do nó direito do segundo nível (nível 3 - 4 elementos).',chat)
-            # send_message('4. Continue repetindo até chegar o último elemento.',chat)
-            # bot.send_photo(chat_id=chat, photo=open(
-            #     '../imagens/imagem_4.jpg', 'rb'))
-            # send_message('Relação entre índices do array e elementos da árvore',chat)
-            # send_message('Relação entre índices do array e elementos da árvore',chat)
-            # send_message('Árvore binária completa tem uma propriedade interessante que podemos usar para encontrar os filhos e os pais de qualquer nó.',chat)
+            send_message(
+                'Heap Sort é um algoritmo de ordenação popular e eficiente em programação de computadores. Aprender a escrever o ', chat)
+            time.sleep(3)
+            send_message(
+                'algoritmo de classificação de pilha requer conhecimento de dois tipos de estruturas de dados - arrays e árvores.', chat)
+            time.sleep(3)
+            send_message(
+                'Seu funcionamento é fundamentado na visualização dos elementos do array em uma forma especial,chamada heap.', chat)
+            time.sleep(3)
+            send_message('Entendendo uma árvore binária', chat)
+            time.sleep(3)
+            send_message(
+                'Uma árvore binária é uma estrutura de dados em que cada pai (um nó da árvore) pode ter no máximo dois filhos. ', chat)
+            time.sleep(4)
+            send_message('Na imagem, cada elemento possui 2 filhos ', chat)
+            time.sleep(3)
+            bot.send_photo(chat_id=chat, photo=open(
+                '../imagens/imagem_1.jpg', 'rb'))
+            time.sleep(2)
+            send_message('Árvore binária cheia', chat)
+            time.sleep(2)
+            send_message(
+                'Uma árvore binária cheia (full binary tree) é um tipo especial de árvore binária,em que todos os pais tem dois filhos ou nenhum.', chat)
+            time.sleep(2)
+            bot.send_photo(chat_id=chat, photo=open(
+                '../imagens/imagem_2.jpg', 'rb'))
+            time.sleep(2)
+            send_message('Árvore binária completa', chat)
+            time.sleep(1)
+            send_message(
+                'Uma árvore binária completa (Complete binary tree) é como uma árvore binária cheia,mas com duas grandes diferenças:', chat)
+            time.sleep(4)
+            send_message('1. Cada nível deve ser completamente preenchido \n 2. Todos os elementos da folha devem inclinar-se para a esquerda.\n 3. O último elemento de folha não pode ter um certo irmão, isto é, uma árvore binária completa não precisa ser uma árvore binária cheia.', chat)
+            time.sleep(4)
+            bot.send_photo(chat_id=chat, photo=open(
+                '../imagens/imagem_3.jpg', 'rb'))
+            send_message(
+                'Como criar uma árvore binária completa de uma lista não-ordenada (array)?', chat)
+            time.sleep(3)
+            send_message(
+                '1.Selecione o primeiro elemento da lista para ser o nó raiz. (Primeiro nível - 1 elemento)', chat)
+            time.sleep(3)
+            send_message('2.Coloque o segundo elemento como um filho à esquerda do nó raiz e o terceiro elemento como um filho a direita,2.Coloque o segundo elemento como um filho à esquerda do nó raiz e o terceiro elemento como um filho a direita.', chat)
+            time.sleep(3)
+            send_message('3. Colocar em seguida dois elementos como filhos do nó esquerdo do segundo nível. Mais uma vez,colocar os dois próximos elementos como filhos do nó direito do segundo nível (nível 3 - 4 elementos).', chat)
+            time.sleep(3)
+            send_message(
+                '4. Continue repetindo até chegar o último elemento.', chat)
+            bot.send_photo(chat_id=chat, photo=open(
+                '../imagens/imagem_4.jpg', 'rb'))
+            time.sleep(2)
+            send_message(
+                'Relação entre índices do array e elementos da árvore', chat)
+            time.sleep(3)
+            send_message(
+                'Relação entre índices do array e elementos da árvore', chat)
+            time.sleep(3)
+            send_message(
+                'Árvore binária completa tem uma propriedade interessante que podemos usar para encontrar os filhos e os pais de qualquer nó.', chat)
+            time.sleep(3)
             send_message('Se o índice de qualquer elemento do array é i, o elemento do índice 2i + 1 vai se tornar a criança esquerda '
                          'enquanto que o elemento do índice a direita se dará por 2i + 2. Além disso, o pai de qualquer elemento no '
                          'índice é dada pelo limite inferior de (i-1) / 2.', chat)
+            time.sleep(5)
             bot.send_photo(chat_id=chat, photo=open(
                 '../imagens/imagem_5.jpg', 'rb'))
+            time.sleep(3)
             send_message('A estrutura do heap', chat)
+            time.sleep(3)
             send_message('Heap é uma estrutura de dados baseados em árvores especiais. Uma árvore binária é dito a seguir '
                          'uma estrutura de dados heap se:', chat)
+            time.sleep(5)
             send_message('Deve ser uma árvore binária completa.', chat)
             send_message('Todos os nós na árvore seguem a propriedade que eles são superiores a seus filhos, ou seja, '
                          'o elemento maior é a raiz e ambos os seus filhos assumem lugar de nós, ligados a elementos menores que a raiz '
@@ -513,46 +543,72 @@ def handle_updates(updates):
                 'A imagem a seguir mostra bem o max-heap e o min-heap', chat)
             bot.send_photo(chat_id=chat, photo=open(
                 '../imagens/imagem_6.jpg', 'rb'))
+            time.sleep(3)
             send_message('Como fazer o processo de heapify', chat)
             send_message('A partir de uma árvore binária completa, nós podemos modificá-lo para se tornar um Max-Heap, executando uma '
                          'função chamada heapify sobre todos os elementos não-folha do heap.', chat)
+            time.sleep(5)
             send_message(
                 'Na imagem executamos o heapify em uma árvore com apenas três elementos.', chat)
             bot.send_photo(chat_id=chat, photo=open(
                 '../imagens/imagem_7.jpg', 'rb'))
+            time.sleep(3)
             send_message('O exemplo acima mostra dois cenários - um em que a raiz é o elemento maior e não precisamos fazer nada.'
                          'E outra na qual raiz tinha o maior elemento como um filho e precisava trocar para manter a propriedade de '
                          'max-heap.', chat)
+            time.sleep(5)
             send_message(
                 'Agora vamos pensar em outro cenário a partir da imagem a seguir', chat)
             bot.send_photo(chat_id=chat, photo=open(
                 '../imagens/imagem_8.jpg', 'rb'))
-
+            time.sleep(3)
             send_message(
                 'O elemento superior não é um max-heap, mas todas as sub-árvores são max-heaps.', chat)
             send_message('Para manter a propriedade de max-heap para a árvore inteira, temos que continuar puxando 2 posições para '
                          'baixo até que ele atinja sua posição correta.', chat)
+            time.sleep(4)
             bot.send_photo(chat_id=chat, photo=open(
                 '../imagens/imagem_9.jpg', 'rb'))
+            time.sleep(3)
             send_message('Assim, para manter a propriedade de max-heap em uma árvore, onde ambas as sub-árvores são max-heaps, '
                          'precisamos executar o heapify no elemento raiz, repetidamente, até que o mesmo seja maior do que seus '
                          'filhos ou se torne um nó folha.', chat)
+            time.sleep(6)
             send_message('Construindo o max-heap', chat)
             send_message('Para construir um max-heap de qualquer árvore, podemos começar aplicar o processo de heapify para cada '
                          'sub-árvore de baixo a cima e finalizar com um max-heap depois que a função é aplicada em todos os elementos, '
                          'incluindo o elemento raiz.', chat)
+            time.sleep(6)
             send_message('No caso de uma árvore completa, o primeiro índice do nó não-folha é dada por n/2 - 1.'
                          ' Todos os outros nós depois que são nós de folha não precisam passar pelo heapify.', chat)
-            send_message('A imagem a seguir representa a construção do max-heap', chat)
-            send_message('', chat)
-            send_message('', chat)
-            send_message('', chat)
-            send_message('', chat)
-            send_message('', chat)
-            send_message('', chat)
-            send_message('', chat)
-            send_message('', chat)
-
+            time.sleep(3)
+            send_message(
+                'A imagem a seguir representa a construção do max-heap', chat)
+            bot.send_photo(chat_id=chat, photo=open(
+                '../imagens/imagem_10.jpg', 'rb'))
+            time.sleep(3)
+            send_message('Como mostra no diagrama acima, começamos por heapifying as árvores das menores para os mais baixas e '
+                         'mover-las gradualmente até chegarmos ao elemento raiz.', chat)
+            send_message('Enfim, o heap sort', chat)
+            send_message('Etapas para execução do heap sort:', chat)
+            send_message(
+                '1. Desde que a árvore satisfaça a propriedade de Max-Heap, então, o maior item é armazenado no nó raiz.', chat)
+            send_message('2. Remover o elemento raiz e colocar no final do array (n-ésima posição. Colocar o último item da árvore (heap) '
+                         'no lugar vago.', chat)
+            send_message('3. Reduzir o tamanho do heap por 1 e aplicar o heapify no elemento raiz novamente para que possamos ter '
+                         'o maior elemento como raiz.', chat)
+            send_message(
+                '4. O processo é repetido até que todos os itens da lista é classificada.', chat)
+            bot.send_photo(chat_id=chat, photo=open(
+                '../imagens/imagem_11.jpg', 'rb'))
+            send_message(
+                'Depois dessa explicação,executaremos o HeapSort para você ver o tempo que demora para a ordenação por completa do vetor', chat)
+            arr = fill_vector_disorder(int(msg))
+            before = time.time()
+            heap_sort(arr)
+            after = time.time()
+            total = (after - before) * 1000  # Segundos multiplicados em 10000
+            return send_message("O tempo gasto para ordenar o vetor foi: {:6f} mili-segundos". format(total), chat)
 
 def main():
     last_update_id = None
