@@ -513,26 +513,45 @@ def handle_updates(updates):
                 'A imagem a seguir mostra bem o max-heap e o min-heap', chat)
             bot.send_photo(chat_id=chat, photo=open(
                 '../imagens/imagem_6.jpg', 'rb'))
-            # send_message('', chat)
-            # send_message('', chat)
-            # send_message('', chat)
-            # send_message('', chat)
-            # send_message('', chat)
-            # send_message('', chat)
-            # send_message('', chat)
-            # send_message('', chat)
-            # send_message('', chat)
-            # send_message('', chat)
-            # send_message('', chat)
-            # send_message('', chat)
-            # send_message('', chat)
-            # send_message('', chat)
-            # send_message('', chat)
-            # send_message('', chat)
-            # send_message('', chat)
-            # send_message('', chat)
-            # send_message('', chat)
-            # send_message('', chat)
+            send_message('Como fazer o processo de heapify', chat)
+            send_message('A partir de uma árvore binária completa, nós podemos modificá-lo para se tornar um Max-Heap, executando uma '
+                         'função chamada heapify sobre todos os elementos não-folha do heap.', chat)
+            send_message(
+                'Na imagem executamos o heapify em uma árvore com apenas três elementos.', chat)
+            bot.send_photo(chat_id=chat, photo=open(
+                '../imagens/imagem_7.jpg', 'rb'))
+            send_message('O exemplo acima mostra dois cenários - um em que a raiz é o elemento maior e não precisamos fazer nada.'
+                         'E outra na qual raiz tinha o maior elemento como um filho e precisava trocar para manter a propriedade de '
+                         'max-heap.', chat)
+            send_message(
+                'Agora vamos pensar em outro cenário a partir da imagem a seguir', chat)
+            bot.send_photo(chat_id=chat, photo=open(
+                '../imagens/imagem_8.jpg', 'rb'))
+
+            send_message(
+                'O elemento superior não é um max-heap, mas todas as sub-árvores são max-heaps.', chat)
+            send_message('Para manter a propriedade de max-heap para a árvore inteira, temos que continuar puxando 2 posições para '
+                         'baixo até que ele atinja sua posição correta.', chat)
+            bot.send_photo(chat_id=chat, photo=open(
+                '../imagens/imagem_9.jpg', 'rb'))
+            send_message('Assim, para manter a propriedade de max-heap em uma árvore, onde ambas as sub-árvores são max-heaps, '
+                         'precisamos executar o heapify no elemento raiz, repetidamente, até que o mesmo seja maior do que seus '
+                         'filhos ou se torne um nó folha.', chat)
+            send_message('Construindo o max-heap', chat)
+            send_message('Para construir um max-heap de qualquer árvore, podemos começar aplicar o processo de heapify para cada '
+                         'sub-árvore de baixo a cima e finalizar com um max-heap depois que a função é aplicada em todos os elementos, '
+                         'incluindo o elemento raiz.', chat)
+            send_message('No caso de uma árvore completa, o primeiro índice do nó não-folha é dada por n/2 - 1.'
+                         ' Todos os outros nós depois que são nós de folha não precisam passar pelo heapify.', chat)
+            send_message('A imagem a seguir representa a construção do max-heap', chat)
+            send_message('', chat)
+            send_message('', chat)
+            send_message('', chat)
+            send_message('', chat)
+            send_message('', chat)
+            send_message('', chat)
+            send_message('', chat)
+            send_message('', chat)
 
 
 def main():
